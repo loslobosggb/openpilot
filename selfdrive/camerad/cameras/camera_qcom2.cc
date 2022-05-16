@@ -1066,6 +1066,11 @@ double CameraState::ar0231_get_geometric_mean(VisionBuf *camera_buf) {
   return exp(sum_logs / total);
 }
 
+double CameraState::get_geometric_mean(VisionBuf *camera_buf) {
+  assert(camera_id == CAMERA_ID_AR0231);
+  return ar0231_get_geometric_mean(camera_buf);
+}
+
 void CameraState::handle_camera_event(void *evdat) {
   if (!enabled) return;
   struct cam_req_mgr_message *event_data = (struct cam_req_mgr_message *)evdat;

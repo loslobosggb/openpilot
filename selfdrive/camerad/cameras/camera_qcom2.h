@@ -60,8 +60,7 @@ public:
   void camera_close();
 
   std::map<uint16_t, uint16_t> ar0231_parse_registers(uint8_t *data, std::initializer_list<uint16_t> addrs);
-  std::vector<int> ar0231_parse_histogram(uint8_t *data);
-  double ar0231_get_geometric_mean(VisionBuf *camera_buf);
+  double get_geometric_mean(VisionBuf *camera_buf);
 
   int32_t session_handle;
   int32_t sensor_dev_handle;
@@ -100,6 +99,8 @@ private:
   // Histogram parsing
   int ar0231_histogram_bins[AR0231_NUM_HISTOGRAM_BINS];
   int ar0231_histogram_bin_widths[AR0231_NUM_HISTOGRAM_BINS];
+  double ar0231_get_geometric_mean(VisionBuf *camera_buf);
+  std::vector<int> ar0231_parse_histogram(uint8_t *data);
 };
 
 typedef struct MultiCameraState {

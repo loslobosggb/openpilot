@@ -149,7 +149,7 @@ bool CameraBuf::acquire() {
   cur_camera_buf = &camera_bufs[cur_buf_idx];
 
   // Parse histogram to find mean/max for tone mapping
-  cur_frame_data.histogram_geometric_mean = camera_state->ar0231_get_geometric_mean(cur_camera_buf);
+  cur_frame_data.histogram_geometric_mean = camera_state->get_geometric_mean(cur_camera_buf);
 
   double start_time = millis_since_boot();
 
