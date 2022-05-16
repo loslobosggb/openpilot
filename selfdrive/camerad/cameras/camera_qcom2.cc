@@ -1148,7 +1148,12 @@ void CameraState::set_camera_exposure(float grey_frac) {
 
   // Hysteresis around high conversion gain
   // We usually want this on since it results in lower noise, but turn off in very bright day scenes
-  bool enable_dc_gain = false; // TODO: find other way to switch
+  bool enable_dc_gain = dc_gain_enabled;
+  if (!enable_dc_gain && cur_ev_ > 200) {
+    enable_dc_gain = true;
+  } else if (enable_dc_gain && cur_ev_ < 20) {
+    enable_dc_gain = false;
+  }
 
   // Simple brute force optimizer to choose sensor parameters
   // to reach desired EV
